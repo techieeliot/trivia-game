@@ -2,17 +2,14 @@ import React from 'react'
 import Header from './Header'
 import Content from './Content'
 
-
-
-const Home = () => {
+const Quiz = () => {
 
     return(
         <>
             <Header 
-                text="Welcome to the Trivia Challenge!"/>
-            <Content />
+                text="Entertainment: Video Games"/>
         </>
     )
 }
 
-export default Home
+export default Quiz
