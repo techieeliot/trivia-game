@@ -1,11 +1,11 @@
 import React from 'react';
+import './App.css';
+import Home from './components/Home'
 
 function App() {
   return (
     <main className="App">
-      <header>
-        <h1>Welcome to the Trivia Challenge</h1>
-      </header>
+      <Home />
     </main>
   );
 }
