@@ -33,11 +33,9 @@ const Quiz = () => {
     }
     const handleFalseClick = () => {
         setAllClicks(allClicks.concat('False'))
-            if(allClicks.length < 9){
-                return setSelected(selected + 1)
-            }
-
-
+        if(allClicks.length < 9){
+            return setSelected(selected + 1)
+        }
     }
 
     return(
@@ -49,7 +47,7 @@ const Quiz = () => {
             <ButtonBox 
                 handleTrueClick={handleTrueClick}     
                 handleFalseClick={handleFalseClick} 
-                selected={selected} />      
+                allClicks={allClicks} />      
         </>
     )
 }

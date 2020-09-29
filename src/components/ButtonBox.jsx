@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-export default ({handleTrueClick, handleFalseClick, selected}) => {
+export default ({handleTrueClick, handleFalseClick, allClicks}) => {
     return(
         <>
             <ButtonBox>
                 {/* ternary checks if on question 10 yet*/}
-                {(selected < 9) ?
+                {(allClicks.length < 10) ?
                     // if not question 10 show true/false button
                     <>
                         <Button onClick={handleTrueClick}>true</Button>
@@ -40,5 +40,4 @@ const Button = styled.button`
     font: 500 30px Arial;
     border: none;
     text-transform: uppercase;
-    margin-bottom: 2rem;
 `
