@@ -8,6 +8,8 @@ const Quiz = () => {
     // setup state for the header and question to change
    const [questions, setQuestions] = useState({})
    const [selected, setSelected] = useState(0)
+   const [allClicks, setAllClicks] = useState([])
+
     // useEffect make axios request to fetch the quesiton data
     useEffect(() => {
         const url = 'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean'
@@ -17,13 +19,26 @@ const Quiz = () => {
                 setQuestions(response.data.results)})
             .catch( err => console.error(err))
     }, [])
-    console.log(questions)
 
     /** handleSubmit to:
-        - collect and join the answer input into state
+        - collect and join the answer input into state array
         - increment to the next question's data
     **/
 
+    const handleTrueClick = () => {
+        setAllClicks(allClicks.concat('True'))
+        if(allClicks.length < 9){
+            return setSelected(selected + 1)
+        }
+    }
+    const handleFalseClick = () => {
+        setAllClicks(allClicks.concat('False'))
+            if(allClicks.length < 9){
+                return setSelected(selected + 1)
+            }
+
+
+    }
 
     return(
         <>
@@ -31,7 +46,10 @@ const Quiz = () => {
             <Card 
                 questions={questions}
                 selected={selected} />   
-            <ButtonBox />      
+            <ButtonBox 
+                handleTrueClick={handleTrueClick}     
+                handleFalseClick={handleFalseClick} 
+                selected={selected} />      
         </>
     )
 }

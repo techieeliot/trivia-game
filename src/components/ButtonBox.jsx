@@ -1,12 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-export default () => {
+export default ({handleTrueClick, handleFalseClick, selected}) => {
     return(
         <>
             <ButtonBox>
-                <Button>True</Button>
-                <Button>False</Button>
+                {/* ternary checks if on question 10 yet*/}
+                {(selected < 9) ?
+                    // if not question 10 show true/false button
+                    <>
+                        <Button onClick={handleTrueClick}>true</Button>
+                        <Button onClick={handleFalseClick}>false</Button>
+                    </>
+                :
+                    // if question 10 show results button
+                    <>
+                        <Link to="/results">
+                            <Button>results</Button>
+                        </Link>
+                    </>
+                }
             </ButtonBox>
         </>
     )
