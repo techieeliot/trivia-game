@@ -8,6 +8,7 @@ const Quiz = () => {
     // setup state for the header and question to change
    const [questions, setQuestions] = useState({})
    const [selected, setSelected] = useState(0)
+
     // useEffect make axios request to fetch the quesiton data
     useEffect(() => {
         const url = 'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean'
@@ -23,7 +24,6 @@ const Quiz = () => {
         - collect and join the answer input into state
         - increment to the next question's data
     **/
-
 
     return(
         <>
