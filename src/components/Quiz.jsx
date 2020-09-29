@@ -1,30 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import Header from './Header'
-import axios from 'axios'
 import Card from './Card'
 import ButtonBox from './ButtonBox'
+import { QuestionsContext } from '../context/TriviaGameContext'
 
 const Quiz = () => {
-    // setup state for the header and question to change
-   const [questions, setQuestions] = useState({})
    const [selected, setSelected] = useState(0)
    const [allClicks, setAllClicks] = useState([])
-
-    // useEffect make axios request to fetch the quesiton data
-    useEffect(() => {
-        const url = 'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean'
-        axios.get(url)
-            .then( response => {
-                console.log("promise fulfilled")
-                setQuestions(response.data.results)})
-            .catch( err => console.error(err))
-    }, [])
+   const questions = useContext(QuestionsContext);
 
     /** handleSubmit to:
         - collect and join the answer input into state array
+        - create True or False in the allClicks store array
         - increment to the next question's data
     **/
-
     const handleTrueClick = () => {
         setAllClicks(allClicks.concat('True'))
         if(allClicks.length < 9){

@@ -1,24 +1,43 @@
-import React from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { QuestionsContext } from '../context/TriviaGameContext'
 
 export default ({handleTrueClick, handleFalseClick, allClicks}) => {
+    const [isComplete, setIsComplete] = useState(false)
+    const questions = useContext(QuestionsContext)
+    const [selected, setSelected] = useState(0)
+
+    useEffect(
+        (allClicks.length > 9) ? 
+            setIsComplete(true)
+            .then(calculateScore(allClicks))
+        : ''
+
+    , [allClicks])
+    
+    const calculateScore = (answers) => {
+        questions[selected].map(item => {
+            console.log(item)
+        })
+        console.log('You ran the calculate score effect')
+    }
     return(
         <>
             <ButtonBox>
-                {/* ternary checks if on question 10 yet*/}
-                {(allClicks.length < 10) ?
+                {/* ternary checks if completed quiz through question 10 yet*/}
+                {(isComplete) ?
+                    // if question 10 complete show results button
+                    <>
+                        <Link to="/results?answers=${scoreCard}">
+                            <Button>results</Button>
+                        </Link>
+                    </>
+                :
                     // if not question 10 show true/false button
                     <>
                         <Button onClick={handleTrueClick}>true</Button>
                         <Button onClick={handleFalseClick}>false</Button>
-                    </>
-                :
-                    // if question 10 show results button
-                    <>
-                        <Link to="/results">
-                            <Button>results</Button>
-                        </Link>
                     </>
                 }
             </ButtonBox>
