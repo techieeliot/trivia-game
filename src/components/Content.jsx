@@ -25,7 +25,8 @@ const Content = styled.section`
     font: 500 25px Arial;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;`
+    justify-content: space-between;
+`
 
 const Button = styled.button`
     order: none;
@@ -35,4 +36,5 @@ const Button = styled.button`
     font: 500 30px Arial;
     border: none;
     text-transform: uppercase;
-    margin-bottom: 2rem;`
+    margin-bottom: 2rem;
+`
