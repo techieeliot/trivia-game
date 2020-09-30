@@ -5,7 +5,6 @@ import Quiz from './components/Quiz'
 import Results from './components/Results'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from 'axios'
-// import { TriviaGameProvider } from './context/TriviaGameContext'
 
 const QuestionsContext = createContext({
   question: [],

@@ -9,24 +9,24 @@ export default ({handleTrueClick, handleFalseClick, allClicks}) => {
     const [selected, setSelected] = useState(0)
 
     
-    const calculateScore = (answers) => {
-        questions[selected].map(item => {
-            return console.log(item)
-        })
-        console.log('You ran the calculate score effect')
-    }
-    useEffect(
-        (allClicks.length > 9) ? 
-            setIsComplete(true)
-            .then(calculateScore(allClicks))
-        : ''
+    // const calculateScore = (answers) => {
+    //     questions[selected].map(item => {
+    //         return console.log(item)
+    //     })
+    //     console.log('You ran the calculate score effect')
+    // }
+    // useEffect(
+    //     (allClicks.length > 9) ? 
+    //         setIsComplete(true)
+    //         .then(calculateScore(allClicks))
+    //     : ''
 
-    , [allClicks])
+    // , [allClicks])
     return(
         <>
             <ButtonBox>
                 {/* ternary checks if completed quiz through question 10 yet*/}
-                {(isComplete) ?
+                {(allClicks.length > 9) ?
                     // if question 10 complete show results button
                     <>
                         <Link to="/results">
