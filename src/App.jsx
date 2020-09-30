@@ -7,21 +7,22 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from 'axios'
 
 const QuestionsContext = createContext({
-  question: [],
+  questions: [],
   setQuestions: () => [], 
-  scores: [], 
-  setScores: () => []
+  answers: [], 
+  setAnswers: () => []
 });
 
 const App = () => {
-  
+
   const [questions, setQuestions] = useState([])
-  const [scores, setScores] = useState([])
+  const [answers, setAnswers] = useState([])
   const url = 'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean'
   const CancelToken = axios.CancelToken
   const source = CancelToken.source()
   // useEffect make axios request to fetch the quesiton data
   useEffect(() => {
+
     const loadQuestions = () => {axios.get(url, { cancelToken: source.token })
       .then( response => {
           console.log("promise fulfilled")
@@ -41,12 +42,12 @@ const App = () => {
     return () => {
       source.cancel();
     };
-  }, [scores])
+  }, [answers])
 
   console.log(questions)
  
   return (
-    <QuestionsContext.Provider value={{questions: questions, scores: scores}}>
+    <QuestionsContext.Provider value={{questions: questions, answers: answers}}>
       <Router>
         <main className="App">
           <Switch>

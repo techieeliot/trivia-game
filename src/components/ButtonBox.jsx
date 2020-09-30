@@ -11,10 +11,6 @@ export default ({handleTrueClick, handleFalseClick, allClicks}) => {
     const [selected, setSelected] = useState(0)
      
 
-    const handleScore = () => {
-        setScores(scores.concat(allClicks))
-    }
-    
     // const calculateScore = (answers) => {
     //     questions[selected].map(item => {
     //         return console.log(item)
@@ -36,7 +32,7 @@ export default ({handleTrueClick, handleFalseClick, allClicks}) => {
                     // if question 10 complete show results button
                     <>
                         <Link to="/results">
-                            <Button onClick={handleScore}>results</Button>
+                            <Button type="submit">results</Button>
                         </Link>
                     </>
                 :
