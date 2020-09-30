@@ -42,7 +42,7 @@ const App = () => {
         source.cancel();
       };
 
-  }, [])
+  }, [userAnswers])
 
   console.log(questions)
 
