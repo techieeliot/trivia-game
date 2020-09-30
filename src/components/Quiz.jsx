@@ -9,6 +9,8 @@ import { useHistory } from 'react-router-dom'
 const Quiz = () => {
    const [selected, setSelected] = useState(0)
    const [allClicks, setAllClicks] = useState([])
+   const [grades, setGrades] = useState([])
+   const [correct, setCorrect] = useState(0)
    const context = useContext(QuestionsContext);
    const questions = context.questions
    const {userAnswers, setUserAnswers} = context.answersObject
@@ -23,6 +25,15 @@ const Quiz = () => {
     const handleTrueClick = (event) => {
         event.preventDefault()
         setAllClicks(allClicks.concat('True'))
+        const correctAnswer = questions[selected].correct_answer
+        const submittedAnswer = allClicks[selected]
+        if (correctAnswer == "True") {
+            setGrades(grades.concat('Correct'))
+            setCorrect(correct + 1)
+        }
+        if (correctAnswer != "True") {
+            setGrades(grades.concat('Incorrect'))
+        }
         if(allClicks.length < 9){
             return setSelected(selected + 1)
         }
@@ -30,6 +41,16 @@ const Quiz = () => {
     const handleFalseClick = (event) => {
         event.preventDefault()
         setAllClicks(allClicks.concat('False'))
+        const correctAnswer = questions[selected].correct_answer
+        const submittedAnswer = allClicks[selected]
+
+        if (correctAnswer == "False") {
+            setGrades(grades.concat('Correct'))
+            setCorrect(correct + 1)
+        }
+        if (correctAnswer != "False") {
+            setGrades(grades.concat('Incorrect'))
+        }
         if(allClicks.length < 9){
             return setSelected(selected + 1)
         }
@@ -40,7 +61,9 @@ const Quiz = () => {
         const userAnswerObject = {
         date: new Date().toISOString(),
         id: userAnswers.length + 1,
-        content: allClicks
+        answers: allClicks,
+        results: grades,
+        correct: correct
         }
         console.log(userAnswerObject)
         setUserAnswers(userAnswers.concat(userAnswerObject))

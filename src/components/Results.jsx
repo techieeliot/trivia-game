@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Header from './Header'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
@@ -6,11 +6,24 @@ import { QuestionsContext } from '../App'
 
 
 const Results = ({ allClicks}) => {
-    const questions = useContext(QuestionsContext)
+    const context = useContext(QuestionsContext)
+    const questions = context.questions
+    const {userAnswers, setUserAnswers} = context.answersObject
     const [choices, setChoices] = useState(allClicks)
-    const [correct, setCorrect] = useState(0)
+    const correct = userAnswers[userAnswers.length - 1].correct
     const score = `You scored \n${correct}/10`
+    
+    // const calculateScore = () => {
+    //     const usersAnswers
+    //     for (const iterator of object) {
+            
+    //     }
+    // }
+    // useEffect(
+    //     calculateScore()
 
+    // , [])
+    // calculateScore()
     return(
         <>
             <Header 
