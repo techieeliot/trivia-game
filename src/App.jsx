@@ -8,12 +8,15 @@ import axios from 'axios'
 
 const QuestionsContext = createContext({
   question: [],
-  setQuestions: () => []
+  setQuestions: () => [], 
+  scores: [], 
+  setScores: () => []
 });
 
 const App = () => {
   
   const [questions, setQuestions] = useState([])
+  const [scores, setScores] = useState([])
   const url = 'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean'
   const CancelToken = axios.CancelToken
   const source = CancelToken.source()
@@ -38,12 +41,12 @@ const App = () => {
     return () => {
       source.cancel();
     };
-  }, [])
+  }, [scores])
 
   console.log(questions)
  
   return (
-    <QuestionsContext.Provider value={{questions, setQuestions}}>
+    <QuestionsContext.Provider value={{questions: questions, scores: scores}}>
       <Router>
         <main className="App">
           <Switch>

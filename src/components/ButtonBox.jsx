@@ -4,10 +4,16 @@ import { Link } from 'react-router-dom'
 import { QuestionsContext } from '../App'
 
 export default ({handleTrueClick, handleFalseClick, allClicks}) => {
+    const data = useContext(QuestionsContext);
+    const scores = data.scores
+    const setScores = (data) => data.setScores
     const [isComplete, setIsComplete] = useState(false)
-    const questions = useContext(QuestionsContext)
     const [selected, setSelected] = useState(0)
+     
 
+    const handleScore = () => {
+        setScores(scores.concat(allClicks))
+    }
     
     // const calculateScore = (answers) => {
     //     questions[selected].map(item => {
@@ -30,7 +36,7 @@ export default ({handleTrueClick, handleFalseClick, allClicks}) => {
                     // if question 10 complete show results button
                     <>
                         <Link to="/results">
-                            <Button>results</Button>
+                            <Button onClick={handleScore}>results</Button>
                         </Link>
                     </>
                 :

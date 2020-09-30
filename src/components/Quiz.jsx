@@ -30,9 +30,8 @@ const Quiz = () => {
 
     return(
         <>
-            <Header text={JSON.stringify(questions[selected]?.category) || ''}/>
+            <Header />
             <Card 
-                questions={JSON.stringify(questions)}
                 selected={selected} />   
             <ButtonBox 
                 handleTrueClick={handleTrueClick}     

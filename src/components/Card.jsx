@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { QuestionsContext } from '../App'
 
-export default ({questions, selected}) => {
-
+export default ({ selected}) => {
+    const data = useContext(QuestionsContext);
+    const questions = data.questions
+    
     return(
     <>
            <Card>
