@@ -31,9 +31,7 @@ export default ({handleTrueClick, handleFalseClick, allClicks}) => {
                 {(allClicks.length > 9) ?
                     // if question 10 complete show results button
                     <>
-                        <Link to="/results">
-                            <Button type="submit">results</Button>
-                        </Link>
+                        <Button type="submit">results</Button>
                     </>
                 :
                     // if not question 10 show true/false button

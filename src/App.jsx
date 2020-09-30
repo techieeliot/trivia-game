@@ -9,45 +9,49 @@ import axios from 'axios'
 const QuestionsContext = createContext({
   questions: [],
   setQuestions: () => [], 
-  answers: [], 
-  setAnswers: () => []
+  userAnswers: [], 
+  setUserAnswers: () => []
 });
 
 const App = () => {
 
   const [questions, setQuestions] = useState([])
-  const [answers, setAnswers] = useState([])
+  const [userAnswers, setUserAnswers] = useState([])
+  const value = { userAnswers, setUserAnswers}
   const url = 'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean'
   const CancelToken = axios.CancelToken
   const source = CancelToken.source()
   // useEffect make axios request to fetch the quesiton data
+  const loadQuestions = () => {axios.get(url, { cancelToken: source.token })
+    .then( response => {
+        console.log("promise fulfilled")
+        setQuestions(response.data.results)
+    })
+    .catch( error =>   {      
+        if (axios.isCancel(error)) {
+        console.log("cancelled");
+      } else {
+        throw error;
+      }
+    })
+  }
   useEffect(() => {
-
-    const loadQuestions = () => {axios.get(url, { cancelToken: source.token })
-      .then( response => {
-          console.log("promise fulfilled")
-          setQuestions(response.data.results)
-      })
-      .catch( error =>   {      
-          if (axios.isCancel(error)) {
-          console.log("cancelled");
-        } else {
-          throw error;
-        }
-      })
-    }
-
+    
     loadQuestions()
+      return () => {
+        source.cancel();
+      };
 
-    return () => {
-      source.cancel();
-    };
-  }, [answers])
+  }, [])
 
   console.log(questions)
+
+  // useEffect(() => {
+  //   if()
+  // })
  
   return (
-    <QuestionsContext.Provider value={{questions: questions, answers: answers}}>
+    <QuestionsContext.Provider value={{questions: questions, answersObject: value}}>
       <Router>
         <main className="App">
           <Switch>

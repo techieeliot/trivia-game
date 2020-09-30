@@ -1,16 +1,18 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Header from './Header'
 import Card from './Card'
 import ButtonBox from './ButtonBox'
 import { QuestionsContext } from '../App'
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 
 const Quiz = () => {
    const [selected, setSelected] = useState(0)
    const [allClicks, setAllClicks] = useState([])
-   const data = useContext(QuestionsContext);
-   const questions = data.questions
-   const [answers, setAnswers] = useState([])
+   const context = useContext(QuestionsContext);
+   const questions = context.questions
+   const {userAnswers, setUserAnswers} = context.answersObject
+   const history = useHistory()
 
     /** handleSubmit to:
         - collect and join the answer input into state array
@@ -33,20 +35,22 @@ const Quiz = () => {
         }
     }
 
-    const addAnswers = (event) => {
+    const addUserAnswers = (event) => {
         event.preventDefault()
-        const answerObject = {
+        const userAnswerObject = {
         date: new Date().toISOString(),
-        id: answers.length + 1,
+        id: userAnswers.length + 1,
         content: allClicks
         }
-        setAnswers(answers.concat(answerObject))
-        return console.log(answers)
+        console.log(userAnswerObject)
+        setUserAnswers(userAnswers.concat(userAnswerObject))
+        console.log(userAnswers)
+        history.push("/results")
     }
-
+  
     return(
         <>
-            <Form onSubmit={addAnswers}> 
+            <Form onSubmit={addUserAnswers}> 
                 <Header text={questions[selected]?.category || ''} />
                 <Card 
                     selected={selected} />   
