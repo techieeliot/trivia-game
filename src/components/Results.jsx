@@ -1,15 +1,52 @@
-import React from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Header from './Header'
-import Content from './Content'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { QuestionsContext } from '../App'
 
-const Results = () => {
 
+const Results = ({ allClicks}) => {
+    const context = useContext(QuestionsContext)
+    const questions = context.questions
+    const {userAnswers, setUserAnswers} = context.answersObject
+    const [choices, setChoices] = useState(allClicks)
+    const correct = userAnswers[userAnswers.length - 1].correct
+    const score = `You scored \n${correct}/10`
+    
+    // const calculateScore = () => {
+    //     const usersAnswers
+    //     for (const iterator of object) {
+            
+    //     }
+    // }
+    // useEffect(
+    //     calculateScore()
+
+    // , [])
+    // calculateScore()
     return(
         <>
             <Header 
-                text="You scored 3/10"/>
+                text={score}/>
+            <section>
+                {userAnswers[userAnswers.length-1].results[0]} {questions[0].question}
+            </section>
+            <Link to="/">
+                <Button>play again?</Button>
+            </Link>
         </>
     )
 }
 
 export default Results
+
+const Button = styled.button`
+    order: none;
+    appearance: none;
+    color: inherit;
+    background-color: inherit;
+    font: 500 30px Arial;
+    border: none;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+`

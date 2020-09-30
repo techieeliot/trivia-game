@@ -1,24 +1,43 @@
-import React from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { QuestionsContext } from '../App'
 
-export default ({handleTrueClick, handleFalseClick, selected}) => {
+export default ({handleTrueClick, handleFalseClick, allClicks}) => {
+    const data = useContext(QuestionsContext);
+    const scores = data.scores
+    const setScores = (data) => data.setScores
+    const [isComplete, setIsComplete] = useState(false)
+    const [selected, setSelected] = useState(0)
+     
+
+    // const calculateScore = (answers) => {
+    //     questions[selected].map(item => {
+    //         return console.log(item)
+    //     })
+    //     console.log('You ran the calculate score effect')
+    // }
+    // useEffect(
+    //     (allClicks.length > 9) ? 
+    //         setIsComplete(true)
+    //         .then(calculateScore(allClicks))
+    //     : ''
+
+    // , [allClicks])
     return(
         <>
             <ButtonBox>
-                {/* ternary checks if on question 10 yet*/}
-                {(selected < 9) ?
+                {/* ternary checks if completed quiz through question 10 yet*/}
+                {(allClicks.length > 9) ?
+                    // if question 10 complete show results button
+                    <>
+                        <Button type="submit">results</Button>
+                    </>
+                :
                     // if not question 10 show true/false button
                     <>
                         <Button onClick={handleTrueClick}>true</Button>
                         <Button onClick={handleFalseClick}>false</Button>
-                    </>
-                :
-                    // if question 10 show results button
-                    <>
-                        <Link to="/results">
-                            <Button>results</Button>
-                        </Link>
                     </>
                 }
             </ButtonBox>
@@ -40,5 +59,4 @@ const Button = styled.button`
     font: 500 30px Arial;
     border: none;
     text-transform: uppercase;
-    margin-bottom: 2rem;
 `
