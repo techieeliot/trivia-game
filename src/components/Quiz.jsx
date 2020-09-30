@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import Header from './Header'
 import Card from './Card'
 import ButtonBox from './ButtonBox'
-import { QuestionsContext } from '../context/TriviaGameContext'
+import { QuestionsContext } from '../App'
 
 const Quiz = () => {
    const [selected, setSelected] = useState(0)
@@ -14,6 +14,7 @@ const Quiz = () => {
         - create True or False in the allClicks store array
         - increment to the next question's data
     **/
+   
     const handleTrueClick = () => {
         setAllClicks(allClicks.concat('True'))
         if(allClicks.length < 9){

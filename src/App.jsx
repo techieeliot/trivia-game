@@ -1,16 +1,20 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import './App.css';
 import Home from './components/Home'
 import Quiz from './components/Quiz'
 import Results from './components/Results'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from 'axios'
-import { TriviaGameProvider, QuestionsContext } from './context/TriviaGameContext'
+// import { TriviaGameProvider } from './context/TriviaGameContext'
 
+const QuestionsContext = createContext({
+  question: [],
+  setQuestions: () => []
+});
 
 const App = () => {
   
-  const [questions, setQuestions] = useContext(QuestionsContext)
+  const [questions, setQuestions] = useState([])
   
   // useEffect make axios request to fetch the quesiton data
   useEffect(() => {
@@ -22,10 +26,12 @@ const App = () => {
         })
         .catch( err => console.error(err))
   }, [])
+
+  console.log(questions)
  
   return (
-    <Router>
-      <TriviaGameProvider>
+    <QuestionsContext.Provider value={{questions, setQuestions}}>
+      <Router>
         <main className="App">
           <Switch>
             <Route path="/quiz">
@@ -39,9 +45,9 @@ const App = () => {
             </Route>
           </Switch>
         </main>
-      </TriviaGameProvider>
-    </Router>
+      </Router>
+    </QuestionsContext.Provider>
   );
 }
 
-export default App
+export { App, QuestionsContext}

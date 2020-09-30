@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import Header from './Header'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { QuestionsContext } from '../context/TriviaGameContext'
+import { QuestionsContext } from '../App'
 
 
 const Results = ({ allClicks}) => {
