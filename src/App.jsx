@@ -15,16 +15,30 @@ const QuestionsContext = createContext({
 const App = () => {
   
   const [questions, setQuestions] = useState([])
-  
+  const url = 'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean'
+  const CancelToken = axios.CancelToken
+  const source = CancelToken.source()
   // useEffect make axios request to fetch the quesiton data
   useEffect(() => {
-    const url = 'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean'
-    axios.get(url)
-        .then( response => {
-            console.log("promise fulfilled")
-            setQuestions(response.data.results)
-        })
-        .catch( err => console.error(err))
+    const loadQuestions = () => {axios.get(url, { cancelToken: source.token })
+      .then( response => {
+          console.log("promise fulfilled")
+          setQuestions(response.data.results)
+      })
+      .catch( error =>   {      
+          if (axios.isCancel(error)) {
+          console.log("cancelled");
+        } else {
+          throw error;
+        }
+      })
+    }
+
+    loadQuestions()
+
+    return () => {
+      source.cancel();
+    };
   }, [])
 
   console.log(questions)

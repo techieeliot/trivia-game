@@ -14,7 +14,7 @@ const Quiz = () => {
         - create True or False in the allClicks store array
         - increment to the next question's data
     **/
-   
+
     const handleTrueClick = () => {
         setAllClicks(allClicks.concat('True'))
         if(allClicks.length < 9){
@@ -30,9 +30,9 @@ const Quiz = () => {
 
     return(
         <>
-            <Header text={questions[selected]?.category || ''}/>
+            <Header text={JSON.stringify(questions[selected]?.category) || ''}/>
             <Card 
-                questions={questions}
+                questions={JSON.stringify(questions)}
                 selected={selected} />   
             <ButtonBox 
                 handleTrueClick={handleTrueClick}     
