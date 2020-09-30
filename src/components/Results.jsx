@@ -29,7 +29,7 @@ const Results = ({ allClicks}) => {
             <Header 
                 text={score}/>
             <section>
-                
+                {userAnswers[userAnswers.length-1].results[0]} {questions[0].question}
             </section>
             <Link to="/">
                 <Button>play again?</Button>
