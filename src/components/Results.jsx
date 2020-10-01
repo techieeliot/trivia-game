@@ -1,20 +1,27 @@
 import React, { useContext } from 'react'
+
+// components
 import Header from './Header'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import { QuestionsContext } from '../App'
+
+// libraries
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
-
-
+import { XmlEntities as Entities, AllHtmlEntities } from 'html-entities'
 
 const Results = ({ allClicks}) => {
     const context = useContext(QuestionsContext)
+    const entities = new Entities()
+    const allHtmlEntities = new AllHtmlEntities()
     const questions = context.questions
     const {userAnswers} = context.answersObject
     const mostRecentAnswers = userAnswers[userAnswers.length - 1]
     const correct = mostRecentAnswers.correct
     const score = `You scored \n${correct}/10`
+    
+    console.log(mostRecentAnswers.questions);
     
     return(
         <>
@@ -22,15 +29,17 @@ const Results = ({ allClicks}) => {
             <DisplayGrades>
                 <tbody>
                     {questions.map(question => {
+                        const index = questions.indexOf(question)
+                        const questionIndex = index
                         return (
                         <Question>
                             <IconCell>
                             {/* ternary returns plu or minus if Correct or Incorrect */}
-                            {(mostRecentAnswers.results[questions.indexOf(question)] === "Correct") ? 
+                            {(mostRecentAnswers.results[index] === "Correct") ? 
                                 <FontAwesomeIcon icon={faPlus} /> : 
                                 <FontAwesomeIcon icon={faMinus} /> }
                             </IconCell>
-                            <QuestionCell>{question.question}</QuestionCell>
+                            <QuestionCell>{entities.decode(allHtmlEntities.decode(mostRecentAnswers.questions[questionIndex].question))}</QuestionCell>
                         </Question> 
                         )
                     })}

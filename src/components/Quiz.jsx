@@ -61,7 +61,8 @@ const Quiz = () => {
             id: userAnswers.length + 1,
             answers: allClicks,
             results: grades,
-            correct: correct
+            correct: correct,
+            questions: questions
         }
         console.log(userAnswerObject)
         setUserAnswers(userAnswers.concat(userAnswerObject))

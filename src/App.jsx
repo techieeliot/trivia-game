@@ -21,20 +21,22 @@ const App = () => {
   const url = 'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean'
   const CancelToken = axios.CancelToken
   const source = CancelToken.source()
-  // useEffect make axios request to fetch the quesiton data
+
+  // Axios request to load questions
   const loadQuestions = () => {axios.get(url, { cancelToken: source.token })
     .then( response => {
-        console.log("promise fulfilled")
-        setQuestions(response.data.results)
+      console.log("promise fulfilled")
+      setQuestions(response.data.results)
     })
     .catch( error =>   {      
-        if (axios.isCancel(error)) {
+      if (axios.isCancel(error)) {
         console.log("cancelled");
       } else {
         throw error;
       }
     })
   }
+// useEffect make axios request to fetch the quesiton data
   useEffect(() => {
     
     loadQuestions()
