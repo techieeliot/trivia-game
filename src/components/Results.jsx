@@ -32,14 +32,14 @@ const Results = ({ allClicks}) => {
                         const index = questions.indexOf(question)
                         const questionIndex = index
                         return (
-                        <Question>
+                        <Question lang="en">
                             <IconCell>
                             {/* ternary returns plu or minus if Correct or Incorrect */}
                             {(mostRecentAnswers.results[index] === "Correct") ? 
                                 <FontAwesomeIcon icon={faPlus} /> : 
                                 <FontAwesomeIcon icon={faMinus} /> }
                             </IconCell>
-                            <QuestionCell>{entities.decode(allHtmlEntities.decode(mostRecentAnswers.questions[questionIndex].question))}</QuestionCell>
+                            <QuestionCell >{entities.decode(allHtmlEntities.decode(mostRecentAnswers.questions[questionIndex].question))}</QuestionCell>
                         </Question> 
                         )
                     })}
@@ -81,4 +81,9 @@ const IconCell = styled.td`
 `
 const QuestionCell = styled.td`
     padding: 0 0 0 1rem;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 `
