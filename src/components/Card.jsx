@@ -12,7 +12,7 @@ export default ({ selected}) => {
     return(
     <>
            <Card>
-                <BlackBox>
+                <BlackBox lang="en">
                     <Question>
                         {entities.decode(allHtmlEntities.decode(questions[selected]?.question)) || "...loading"}
                     </Question>
@@ -40,6 +40,11 @@ const BlackBox = styled.section`
 
 const Question = styled.p`
     margin: 20% 8%;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 `
 
 const QuestionNumber = styled.p`
