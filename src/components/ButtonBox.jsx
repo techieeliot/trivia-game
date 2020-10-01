@@ -45,8 +45,8 @@ export default ({handleTrueClick, handleFalseClick, allClicks}) => {
     )
 }
 
-const ButtonBox = styled.section`
-    margin-bottom: 2rem;
+const ButtonBox = styled.footer`
+    margin: 2rem 0;
     display: flex;
     flex-direction: row;
 `
@@ -56,7 +56,7 @@ const Button = styled.button`
     appearance: none;
     color: inherit;
     background-color: inherit;
-    font: 500 30px Arial;
+    font: 500 1.25rem Arial;
     border: none;
     text-transform: uppercase;
 `

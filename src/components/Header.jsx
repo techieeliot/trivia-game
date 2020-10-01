@@ -10,6 +10,6 @@ export default ({text}) => (
 )
 
 const Header = styled.header`
-    font: inherit;
+    font-size: 1rem;
 `
 

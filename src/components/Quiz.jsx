@@ -59,11 +59,11 @@ const Quiz = () => {
     const addUserAnswers = (event) => {
         event.preventDefault()
         const userAnswerObject = {
-        date: new Date().toISOString(),
-        id: userAnswers.length + 1,
-        answers: allClicks,
-        results: grades,
-        correct: correct
+            date: new Date().toISOString(),
+            id: userAnswers.length + 1,
+            answers: allClicks,
+            results: grades,
+            correct: correct
         }
         console.log(userAnswerObject)
         setUserAnswers(userAnswers.concat(userAnswerObject))
@@ -73,21 +73,22 @@ const Quiz = () => {
   
     return(
         <>
-            <Form onSubmit={addUserAnswers}> 
+            <Form onSubmit={addUserAnswers}>
                 <Header text={questions[selected]?.category || ''} />
                 <Card 
-                    selected={selected} />   
-                <ButtonBox 
-                    handleTrueClick={handleTrueClick}     
-                    handleFalseClick={handleFalseClick} 
-                    allClicks={allClicks} />  
+                    selected={selected} />
+                <ButtonBox
+                    handleTrueClick={handleTrueClick}
+                    handleFalseClick={handleFalseClick}
+                    allClicks={allClicks} />
             </Form>
         </>
     )
 }
 
 const Form = styled.form`
-    height: 100vh;
+    width: 100%;
+    height: inherit;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

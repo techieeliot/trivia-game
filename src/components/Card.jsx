@@ -25,21 +25,21 @@ const Card = styled.section`
     height: auto;
     width: 80vw;
     color: #262626;
-    font: 500 25px Arial;
+    font: 500 1.15rem Arial;
 `
 
 const BlackBox = styled.section`
-    height auto;
+    max-height: 50vh;
     width: auto;
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
     border: 1px black solid;
 `
 
 const Question = styled.p`
-    margin: 25% 10%;
+    margin: 20% 8%;
 `
 
 const QuestionNumber = styled.p`
     color: #262626;
-    font: 500 25px Arial;
+    font: 500 1.25rem Arial;
 `

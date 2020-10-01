@@ -17,7 +17,7 @@ export default () => {
 
 const Content = styled.section`
     color: #262626;
-    font: 500 25px Arial;
+    font: 500 1.25rem Arial;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -28,7 +28,7 @@ const Button = styled.button`
     appearance: none;
     color: inherit;
     background-color: inherit;
-    font: 500 30px Arial;
+    font: 500 1.25rem Arial;
     border: none;
     text-transform: uppercase;
     margin-bottom: 2rem;

@@ -9,9 +9,10 @@ const Results = ({ allClicks}) => {
     const context = useContext(QuestionsContext)
     const questions = context.questions
     const {userAnswers, setUserAnswers} = context.answersObject
-    const [choices, setChoices] = useState(allClicks)
-    const correct = userAnswers[userAnswers.length - 1].correct
+    const mostRecentAnswers = userAnswers[userAnswers.length - 1]
+    const correct = mostRecentAnswers.correct
     const score = `You scored \n${correct}/10`
+
     
     // const calculateScore = () => {
     //     const usersAnswers
@@ -29,7 +30,7 @@ const Results = ({ allClicks}) => {
             <Header 
                 text={score}/>
             <section>
-                {userAnswers[userAnswers.length-1].results[0]} {questions[0].question}
+                {mostRecentAnswers.results[0]} {questions[0].question}
             </section>
             <Link to="/">
                 <Button>play again?</Button>
@@ -45,7 +46,7 @@ const Button = styled.button`
     appearance: none;
     color: inherit;
     background-color: inherit;
-    font: 500 30px Arial;
+    font: 500 1.25rem Arial;
     border: none;
     text-transform: uppercase;
     margin-bottom: 2rem;
