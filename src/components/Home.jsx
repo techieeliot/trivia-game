@@ -8,8 +8,7 @@ const Home = () => {
 
     return(
         <>
-            <Header 
-                text="Welcome to the Trivia Challenge!"/>
+            <Header text="Welcome to the Trivia Challenge!"/>
             <Content />
         </>
     )

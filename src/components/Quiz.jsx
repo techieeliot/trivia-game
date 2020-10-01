@@ -17,16 +17,15 @@ const Quiz = () => {
    const history = useHistory()
 
     /** handleSubmit to:
-        - collect and join the answer input into state array
-        - create True or False in the allClicks store array
-        - increment to the next question's data
+        X collect and join the answer input into state array
+        X create True or False in the allClicks store array
+        X increment to the next question's data
     **/
 
     const handleTrueClick = (event) => {
         event.preventDefault()
         setAllClicks(allClicks.concat('True'))
         const correctAnswer = questions[selected].correct_answer
-        const submittedAnswer = allClicks[selected]
         if (correctAnswer == "True") {
             setGrades(grades.concat('Correct'))
             setCorrect(correct + 1)
@@ -42,7 +41,6 @@ const Quiz = () => {
         event.preventDefault()
         setAllClicks(allClicks.concat('False'))
         const correctAnswer = questions[selected].correct_answer
-        const submittedAnswer = allClicks[selected]
 
         if (correctAnswer == "False") {
             setGrades(grades.concat('Correct'))
