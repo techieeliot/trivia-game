@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { QuestionsContext } from '../App'
+import { XmlEntities as Entities, AllHtmlEntities } from 'html-entities'
 
 export default ({ selected}) => {
     const data = useContext(QuestionsContext);
+    const entities = new Entities();
+    const allHtmlEntities = new AllHtmlEntities()
     const questions = data.questions
     
     return(
@@ -11,7 +14,7 @@ export default ({ selected}) => {
            <Card>
                 <BlackBox>
                     <Question>
-                        {questions[selected]?.question || "...loading"}
+                        {entities.decode(allHtmlEntities.decode(questions[selected]?.question)) || "...loading"}
                     </Question>
                 </BlackBox>
                 <QuestionNumber>
