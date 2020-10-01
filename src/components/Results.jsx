@@ -32,7 +32,7 @@ const Results = ({ allClicks}) => {
                         const index = questions.indexOf(question)
                         const questionIndex = index
                         return (
-                        <Question lang="en">
+                        <Question lang="en" key={index}>
                             <IconCell>
                             {/* ternary returns plu or minus if Correct or Incorrect */}
                             {(mostRecentAnswers.results[index] === "Correct") ? 
