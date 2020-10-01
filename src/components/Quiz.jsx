@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import Header from './Header'
 import Card from './Card'
 import ButtonBox from './ButtonBox'
@@ -26,11 +26,11 @@ const Quiz = () => {
         event.preventDefault()
         setAllClicks(allClicks.concat('True'))
         const correctAnswer = questions[selected].correct_answer
-        if (correctAnswer == "True") {
+        if (correctAnswer === "True") {
             setGrades(grades.concat('Correct'))
             setCorrect(correct + 1)
         }
-        if (correctAnswer != "True") {
+        if (correctAnswer !== "True") {
             setGrades(grades.concat('Incorrect'))
         }
         if(allClicks.length < 9){
@@ -42,11 +42,11 @@ const Quiz = () => {
         setAllClicks(allClicks.concat('False'))
         const correctAnswer = questions[selected].correct_answer
 
-        if (correctAnswer == "False") {
+        if (correctAnswer === "False") {
             setGrades(grades.concat('Correct'))
             setCorrect(correct + 1)
         }
-        if (correctAnswer != "False") {
+        if (correctAnswer !== "False") {
             setGrades(grades.concat('Incorrect'))
         }
         if(allClicks.length < 9){

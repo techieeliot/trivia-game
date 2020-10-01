@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import Header from './Header'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
@@ -11,7 +11,7 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 const Results = ({ allClicks}) => {
     const context = useContext(QuestionsContext)
     const questions = context.questions
-    const {userAnswers, setUserAnswers} = context.answersObject
+    const {userAnswers} = context.answersObject
     const mostRecentAnswers = userAnswers[userAnswers.length - 1]
     const correct = mostRecentAnswers.correct
     const score = `You scored \n${correct}/10`

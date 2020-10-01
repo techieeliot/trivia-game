@@ -1,29 +1,8 @@
-import React, { useState, useEffect, useContext} from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { QuestionsContext } from '../App'
 
 export default ({handleTrueClick, handleFalseClick, allClicks}) => {
-    const data = useContext(QuestionsContext);
-    const scores = data.scores
-    const setScores = (data) => data.setScores
-    const [isComplete, setIsComplete] = useState(false)
-    const [selected, setSelected] = useState(0)
      
-
-    // const calculateScore = (answers) => {
-    //     questions[selected].map(item => {
-    //         return console.log(item)
-    //     })
-    //     console.log('You ran the calculate score effect')
-    // }
-    // useEffect(
-    //     (allClicks.length > 9) ? 
-    //         setIsComplete(true)
-    //         .then(calculateScore(allClicks))
-    //     : ''
-
-    // , [allClicks])
     return(
         <>
             <ButtonBox>
